@@ -5,7 +5,8 @@ const Link = (props) => {
   return (
     <div>
       <div>
-        {link.description} ({link.url})
+        {link.titulo} ({link.temporada}) ({link.genero}) ({link.capitulos}) ({link.estudio}) ({link.director}) ({link.animacion})
+        ({link.formato}) ({link.adaptacion})
       </div>
     </div>
   );
