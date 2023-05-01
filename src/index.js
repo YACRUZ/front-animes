@@ -32,7 +32,20 @@ root.render(
     <React.StrictMode>
       <App />
     </React.StrictMode>
-  </ApolloProvider>,
+  </ApolloProvider>
+  <footer >
+          <p className="text-center">Creado por: 
+            Yahir Jesus Jacome Cogco
+          </p>
+          <div className="cont-center">
+            <a href="https://www.facebook.com/yahir.jesus.779"><img src="https://www.facebook.com/images/fb_icon_325x325.png" height="50px" width="50px" alt="Facebook"/></a>
+            <a href="https://www.youtube.com/channel/UC0nPwl62QIktOw3ZkktDHrw"><img src="https://www.transparentpng.com/thumb/youtube-logo/hd-youtube-logo-image-0.png" height="50px" width="50px" alt="YouTube"/></a>
+            <a href="https://github.com/YACRUZ"><img src="https://www.transparentpng.com/thumb/logos/github-logo-png-rtT9Sy.png" height="50px" width="50px" alt="GitHub"/></a>
+          </div>
+          <div>
+            <p className="text-center">S20006732</p>
+          </div>
+        </footer>
   </BrowserRouter>
 );
 

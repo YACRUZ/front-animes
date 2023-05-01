@@ -3,20 +3,26 @@ import { Link } from 'react-router-dom';
 
 const Header = () => {
   return (
-    <div className="flex pa1 justify-between nowrap orange">
-      <div className="flex flex-fixed black">
-        <Link to="/" className="no-underline black">
-          <div className="fw7 mr1">Hacker News</div>
-        </Link>        
-        <Link to="/" className="ml1 no-underline black">
-          List
-        </Link>
-        <div className="ml1">|</div>
+    <div className="flex pa3 justify-between nowrap img-background">
+      <div className="flex items-center ">
+             
+        <button className="ml1 no-underline black pinterest-btn pinterest-btn--black" onClick={() => { window.location.href = "/"; }}>
+          Lista completa de animes
+        </button>
+        <div className="ml7"></div>
+        <div className="mr-auto">
+          <Link to="/" className="no-underline black">
+            <div className="fw7 mr5 fg">Animes</div>
+          </Link>
+        </div>
+        <div className="ml7"></div>
         <Link
           to="/create"
           className="ml1 no-underline black"
         >
-          New
+          <button className="pinterest-btn pinterest-btn--black">
+            Agregar nuevo anime
+          </button>
         </Link>
       </div>
     </div>
