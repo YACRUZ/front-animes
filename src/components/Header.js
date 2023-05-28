@@ -43,6 +43,20 @@ const Header = () => {
             >
               submit
             </Link>
+
+            <Link
+              to="/davinchi"
+              className="ml1 no-underline black"
+            >
+              davinchi
+            </Link>
+
+            <Link
+              to="/images"
+              className="ml1 no-underline black"
+            >
+              images
+            </Link>
           </div>
         )}
       </div>
