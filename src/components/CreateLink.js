@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useMutation, gql } from "@apollo/client";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const CREATE_LINK_MUTATION = gql`
   mutation createCap(
@@ -67,8 +68,9 @@ const CreateLink = () => {
     },
     onCompleted: () => navigate("/"),
   });
-
+  const { t } = useTranslation();
   return (
+    
     <div className="cont-center">
       <form
         onSubmit={(e) => {
@@ -78,7 +80,7 @@ const CreateLink = () => {
       >
         <div className="flex flex-column mt3">
         <label className="label-input">
-            Titulo:
+        {t("title")}:
             <input
               className="mb2 input-pinterest"
               value={formState.titulo}
@@ -93,7 +95,7 @@ const CreateLink = () => {
             />
           </label>
           <label className="label-input">
-            Temporada:
+          {t("season")}:
             <input
               className="mb2 input-pinterest"
               value={formState.temporada}
@@ -108,7 +110,7 @@ const CreateLink = () => {
             />
           </label>
           <label className="label-input">
-            Genero:
+          {t("generes")}:
             <input
               className="mb2 input-pinterest"
               value={formState.genero}
@@ -123,7 +125,7 @@ const CreateLink = () => {
             />
           </label>
           <label className="label-input">
-            Capitulos:
+          {t("capitules")}:
             <input
               className="mb2 input-pinterest"
               value={formState.capitulos}
@@ -138,7 +140,7 @@ const CreateLink = () => {
             />
           </label>
           <label className="label-input">
-            Estudio:
+          {t("studio")}:
             <input
               className="mb2 input-pinterest"
               value={formState.estudio}
@@ -153,7 +155,7 @@ const CreateLink = () => {
             />
           </label>
           <label className="label-input">
-            Director:
+          {t("director")}:
             <input
               className="mb2 input-pinterest"
               value={formState.director}
@@ -168,7 +170,7 @@ const CreateLink = () => {
             />
           </label>
           <label className="label-input">
-            Animación:
+          {t("animation")}:
             <input
               className="mb2 input-pinterest"
               value={formState.animacion}
@@ -183,7 +185,7 @@ const CreateLink = () => {
             />
           </label>
           <label className="label-input">
-            Formato:
+          {t("format")}:
             <input
               className="mb2 input-pinterest"
               value={formState.formato}
@@ -198,7 +200,7 @@ const CreateLink = () => {
             />
           </label>
           <label className="label-input">
-            Adaptación:
+          {t("adaptation")}:
             <input
               className="mb2 input-pinterest"
               value={formState.adaptacion}
@@ -213,7 +215,7 @@ const CreateLink = () => {
             />
           </label>
         </div>
-        <button type="submit" className="buttontitle cont-center">Guardar</button>
+        <button type="submit" className="buttontitle cont-center">{t("save")}</button>
       </form>
     </div>
   );
