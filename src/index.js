@@ -6,6 +6,8 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import { setContext } from '@apollo/client/link/context';
 import { AUTH_TOKEN } from './Constants';
+import './i18nextConf';
+
 
 
 // 1
@@ -47,7 +49,7 @@ root.render(
     </React.StrictMode>
   </ApolloProvider>
   <footer >
-          <p className="text-center">Creado por: 
+          <p className="text-center">Creado por:
             Yahir Jesus Jacome Cogco
           </p>
           <div className="cont-center">
