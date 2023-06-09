@@ -1,6 +1,6 @@
 import { Configuration, OpenAIApi } from "openai";
 
-class ServiceDavinci003 {
+class List {
 
   async getDaVinci(data) {
     const configuration = new Configuration({
@@ -30,9 +30,14 @@ class ServiceDavinci003 {
     
       try {
         const completion = await openai.createCompletion({
-          model: "text-davinci-003",
-          prompt: this.generatePrompt(animal),
-          temperature: 0.6,
+            model: "text-davinci-003",
+            prompt: this.generatePrompt(animal),
+            temperature: 0.5,
+            max_tokens: 200,
+            top_p: 1.0,
+            frequency_penalty: 0.52,
+            presence_penalty: 0.5,
+            stop: ["11."],
         });
         return {
             status: 200,
@@ -59,16 +64,11 @@ class ServiceDavinci003 {
     generatePrompt(animal) {
         const capitalizedAnimal =
         animal[0].toUpperCase() + animal.slice(1).toLowerCase();
-        return `Suggest three names of an anime.
-    
-        Animal: kimetsu no yaiba
-        Names: tanjiro, nezuko, zenitsu
-        Animal: attack of titan
-        Names: eren, mikasa, armin
-        Animal: ${capitalizedAnimal}
+        return `Lista 3 animes.
+        anime: ${capitalizedAnimal}
         Names:`;
     }
 }
 
-const instance = new ServiceDavinci003();
+const instance = new List();
 export default instance;

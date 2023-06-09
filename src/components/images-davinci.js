@@ -21,7 +21,6 @@ export default function ImageGeneration() {
       setResult(data.result);
       setAnimalInput("");
     } catch(error) {
-      // Consider implementing your own error handling logic here
       console.error(error);
       alert(error.message);
     }

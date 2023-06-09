@@ -9,14 +9,6 @@ export default function Textdavinci003() {
     event.preventDefault();
     try {
       const response = await ServiceDavinci003.getDaVinci({ animal: animalInput });
-      /*const response = await fetch("/text-davinci-003/generate", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ animal: animalInput }),
-      });*/
-
       const data = await response;
       console.log(response);
       if (response.status !== 200) {
@@ -26,7 +18,6 @@ export default function Textdavinci003() {
       setResult(data.result);
       setAnimalInput("");
     } catch(error) {
-      // Consider implementing your own error handling logic here
       console.error(error);
       alert(error.message);
     }

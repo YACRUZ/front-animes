@@ -1,69 +1,70 @@
 import React from 'react';
-import { Link, useNavigate} from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AUTH_TOKEN } from '../Constants';
+import { useTranslation } from "react-i18next";
+import LanguageSelect from "./LanguageSelect";
+
 
 const Header = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const authToken = localStorage.getItem(AUTH_TOKEN);
   return (
     <div className="flex pa3 justify-between nowrap img-background">
       <div className="flex items-center ">
-             
+
         <button className="ml1 no-underline black pinterest-btn pinterest-btn--black" onClick={() => { window.location.href = "/"; }}>
-          Lista completa de animes
+          {t('complete list of anime')}
         </button>
-        <div className="ml7"></div>
+        <div className=""></div>
         <div className="mr-auto">
           <Link to="/" className="no-underline black">
             <div className="fw7 mr5 fg">Animes</div>
           </Link>
         </div>
-        <div className="ml7"></div>
-        <Link
-          to="/create"
-          className="ml1 no-underline black"
-        >
-          <button className="pinterest-btn pinterest-btn--black">
-            Agregar nuevo anime
-          </button>
-        </Link>
-        <div className="ml1">|</div>
         <Link
           to="/search"
-          className="ml1 no-underline black"
+          className="pinterest-btn pinterest-btn--black no-underline black"
         >
           search
         </Link>
+
         {authToken && (
           <div className="flex">
-            <div className="ml1">|</div>
+            <div className=""></div>
             <Link
               to="/create"
-              className="ml1 no-underline black"
+              className=" no-underline black"
             >
-              submit
+              <button className="pinterest-btn pinterest-btn--black">
+                {t("add new anime")}
+              </button>
             </Link>
-
             <Link
-              to="/davinchi"
-              className="ml1 no-underline black"
+              to="/openai"
+              className=" no-underline black"
             >
-              davinchi
-            </Link>
-
-            <Link
-              to="/images"
-              className="ml1 no-underline black"
-            >
-              images
+              <button className="pinterest-btn pinterest-btn--black">
+                {t("OpenAi")}
+              </button>
             </Link>
           </div>
         )}
       </div>
       <div className="flex flex-fixed">
+        <div className=" pointer black">
+          {t('select_language')}
+        </div>
+        <div className=" pointer black"> : </div>
+        <div>
+          <LanguageSelect className=" pointer black" />
+        </div>
+      </div>
+
+      <div className="flex flex-fixed">
         {authToken ? (
           <div
-            className="ml1 pointer black"
+            className="pinterest-btn pinterest-btn--black pointer black"
             onClick={() => {
               localStorage.removeItem(AUTH_TOKEN);
               navigate(`/`);
@@ -74,11 +75,11 @@ const Header = () => {
         ) : (
           <Link
             to="/login"
-            className="ml1 no-underline black"
+            className="pinterest-btn pinterest-btn--black no-underline black"
           >
             login
           </Link>
-          )}
+        )}
       </div>
     </div>
   );
