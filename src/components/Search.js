@@ -1,52 +1,88 @@
-import React, { useState } from 'react';
-import { useLazyQuery, gql } from '@apollo/client';
-import Link from './Link';
+import React, { useState } from "react";
+import { useQuery, gql } from "@apollo/client";
 
-const SEARCH_QUERY = gql`
-    query caps($search: String!) {
-        caps(search: $search) {
-          id
-          titulo
-          fecha
-          temporada
-          genero
-          capitulos
-          estudio
-          director
-          animacion
-          formato
-          adaptacion
-        }
+const GET_DATA_ENTRIES_BY_USER = gql`
+  query GetDataEntriesByUser($user: String!) {
+    dataEntriesByUser(user: $user) {
+      id
+      user
+      model
+      prompt
+      result
     }
-`
+  }
+`;
 
-const Search = () => {
-  const [searchFilter, setSearchFilter] = useState('');
-  const [executeSearch, { data }] = useLazyQuery(SEARCH_QUERY);
+const GET_DATA_ENTRIES_BY_MODEL = gql`
+  query GetDataEntriesByModel($model: String!) {
+    dataEntriesByModel(model: $model) {
+      id
+      user
+      model
+      prompt
+      result
+    }
+  }
+`;
+
+const DataEntriesSearch = () => {
+  const [user, setUser] = useState("");
+  const [model, setModel] = useState("");
+  
+  const { loading: loadingUser, data: userData } = useQuery(GET_DATA_ENTRIES_BY_USER, {
+    variables: { user },
+  });
+  
+  const { loading: loadingModel, data: modelData } = useQuery(GET_DATA_ENTRIES_BY_MODEL, {
+    variables: { model },
+  });
 
   return (
-    <>
-      <div>
-        Search:
-        <input
-          type="text"
-          onChange={(e) => setSearchFilter(e.target.value)}
-        />
-        <button
-          onClick={() =>
-            executeSearch({
-              variables: { search: searchFilter }
-            })
-          }>
-          OK
-        </button>
-      </div>
-      {data &&
-        data.caps.map((link) => (
-          <Link key={link.id} link={link} />
-        ))}
-    </>
+    <div>
+      <h3>Search Data Entries</h3>
+      
+      <form>
+        <label>User:</label>
+        <input type="text" value={user} onChange={(e) => setUser(e.target.value)} />
+        <button type="submit">Search by User</button>
+      </form>
+      
+      <form>
+        <label>Model:</label>
+        <select value={model} onChange={(e) => setModel(e.target.value)}>
+          <option value="">All</option>
+          <option value="Traductor">Traductor</option>
+          <option value="text-davinci-003">text-davinci-003</option>
+          <option value="List">List</option>
+          <option value="Emoji">Emoji</option>
+          <option value="Edits">Edits</option>
+        </select>
+        <button type="submit">Search by Model</button>
+      </form>
+      
+      <h4>Results:</h4>
+      
+      {loadingUser && <p>Loading user data...</p>}
+      {userData && userData.dataEntriesByUser.map((entry) => (
+        <div key={entry.id}>
+          <p>User: {entry.user}</p>
+          <p>Model: {entry.model}</p>
+          <p>Prompt: {entry.prompt}</p>
+          <p>Result: {entry.result}</p>
+        </div>
+      ))}
+      
+      {loadingModel && <p>Loading model data...</p>}
+      {modelData && modelData.dataEntriesByModel.map((entry) => (
+        <div key={entry.id}>
+          <p>User: {entry.user}</p>
+          <p>Model: {entry.model}</p>
+          <p>Prompt: {entry.prompt}</p>
+          <p>Result: {entry.result}</p>
+        </div>
+      ))}
+    </div>
   );
 };
 
-export default Search;
+export default DataEntriesSearch;
